@@ -1,0 +1,57 @@
+import random
+
+# Função para exibir o tabuleiro do jogo da velha
+def exibir_tabuleiro(tabuleiro):
+    print(tabuleiro[0] + ' | ' + tabuleiro[1] + ' | ' + tabuleiro[2])
+    print('---------')
+    print(tabuleiro[3] + ' | ' + tabuleiro[4] + ' | ' + tabuleiro[5])
+    print('---------')
+    print(tabuleiro[6] + ' | ' + tabuleiro[7] + ' | ' + tabuleiro[8])
+
+# Função para verificar se há um vencedor
+def verificar_vencedor(tabuleiro, jogador):
+    if ((tabuleiro[0] == jogador and tabuleiro[1] == jogador and tabuleiro[2] == jogador) or
+        (tabuleiro[3] == jogador and tabuleiro[4] == jogador and tabuleiro[5] == jogador) or
+        (tabuleiro[6] == jogador and tabuleiro[7] == jogador and tabuleiro[8] == jogador) or
+        (tabuleiro[0] == jogador and tabuleiro[3] == jogador and tabuleiro[6] == jogador) or
+        (tabuleiro[1] == jogador and tabuleiro[4] == jogador and tabuleiro[7] == jogador) or
+        (tabuleiro[2] == jogador and tabuleiro[5] == jogador and tabuleiro[8] == jogador) or
+        (tabuleiro[0] == jogador and tabuleiro[4] == jogador and tabuleiro[8] == jogador) or
+        (tabuleiro[2] == jogador and tabuleiro[4] == jogador and tabuleiro[6] == jogador)):
+        return True
+    return False
+
+# Função para exibir o troféu no final do jogo
+def exibir_trofeu():
+    print('Parabéns! Você venceu o jogo da velha e ganhou um troféu!')
+    print('  .-""""""-.\n'
+          ' /          \\\n'
+          '|   (o)  (o)  |\n'
+          '|    .vvvv.   |\n'
+          '|   ,\'^^^^\'.  |\n'
+          ' \\,,\'\'\'\'\'\'\'\'\'\'/,,\n'
+          '  V           V')
+
+# Função para exibir anúncio pago
+def exibir_anuncio():
+    print('Anúncio: Aproveite nossa oferta especial!')
+
+# Função principal do jogo
+def jogo_da_velha():
+    tabuleiro = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    jogador_atual = 'X'
+    jogo_acabou = False
+
+    while not jogo_acabou:
+        exibir_tabuleiro(tabuleiro)
+        movimento = int(input('Digite a posição (0-8) para jogar: '))
+
+        if tabuleiro[movimento] == ' ':
+            tabuleiro[movimento] = jogador_atual
+
+            if verificar_vencedor(tabuleiro, jogador_atual):
+                jogo_acabou = True
+                exibir_trofeu()
+            else:
+                if ' ' not in tabuleiro:
+                  
